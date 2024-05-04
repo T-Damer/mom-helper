@@ -1,6 +1,6 @@
 {
-    "name": "Vaccine Calendar",
-    "short_name": "Vaccine Calendar",
+    "name": "",
+    "short_name": "",
     "icons": [
         {
             "src": "/favicon/android-chrome-192x192.png",
@@ -13,7 +13,7 @@
             "type": "image/png"
         }
     ],
-    "theme_color": "#d1d5db",
-    "background_color": "#d1d5db",
+    "theme_color": "#ffffff",
+    "background_color": "#ffffff",
     "display": "standalone"
 }

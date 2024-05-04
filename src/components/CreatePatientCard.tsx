@@ -1,15 +1,15 @@
 import { useAtom } from 'jotai'
 import { useCallback, useMemo, useRef, useState } from 'preact/hooks'
-import CalendarIcon from 'components/CalendarIcon'
+import CalendarIcon from 'components/Icons/CalendarIcon'
 import Card from 'components/Card'
-import HumanIcon from 'components/HumanIcon'
-import nameToBirthDateStorage from 'atoms/nameToBirthDateStorage'
+import HumanIcon from 'components/Icons/HumanIcon'
+import childrenDataStore, { ChildData } from 'atoms/childrenDataStore'
 
 function AddPatientForm() {
   const dateInputRef = useRef<HTMLInputElement | null>(null)
   const [fullName, setFullName] = useState('')
   const [birthDate, setBirthDate] = useState('')
-  const [patientsData, setPatientsData] = useAtom(nameToBirthDateStorage)
+  const [patientsData, setPatientsData] = useAtom(childrenDataStore)
 
   const clearData = useCallback(() => {
     setFullName('')
@@ -19,15 +19,17 @@ function AddPatientForm() {
   const onSubmit = useCallback(() => {
     if (!fullName || !birthDate) return
 
-    if (patientsData[fullName]) {
-      alert('This name already exists\nPlease use another one')
+    if (patientsData.find(({ name }) => name === fullName)) {
+      alert(
+        'Ребенок с таким именем уже существует\nПожалуйста, задайте другое имя'
+      )
       return
     }
 
-    setPatientsData((prevData) => ({
+    setPatientsData((prevData) => [
       ...prevData,
-      [fullName]: Number(new Date(birthDate)),
-    }))
+      new ChildData(fullName, birthDate),
+    ])
     clearData()
   }, [fullName, birthDate, patientsData, setPatientsData, clearData])
 
@@ -49,7 +51,7 @@ function AddPatientForm() {
       <label className="input input-bordered flex items-center gap-2">
         <input
           className="grow"
-          value={birthDate}
+          value={String(birthDate)}
           onChange={(e) => setBirthDate(e.currentTarget.value)}
           type="date"
           placeholder="Birth Date"
@@ -60,7 +62,7 @@ function AddPatientForm() {
       </label>
       <div className="flex w-full items-center justify-between">
         <button
-          className="btn transition-all disabled:opacity-70hover:bg-red-300 border-0 w-28"
+          className="disabled:opacity-70hover:bg-red-300 btn w-28 border-0 transition-all"
           onClick={clearData}
           disabled={!fullName && !birthDate}
         >
@@ -68,7 +70,7 @@ function AddPatientForm() {
         </button>
 
         <button
-          className="btn w-28 transition-all disabled:opacity-70 enabled:bg-green-700 enabled:border-0 enabled:text-white hover:enabled:bg-green-500"
+          className="btn w-28 transition-all enabled:border-0 enabled:bg-green-700 enabled:text-white hover:enabled:bg-green-500 disabled:opacity-70"
           onClick={onSubmit}
           disabled={disabled}
         >

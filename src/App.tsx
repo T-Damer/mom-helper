@@ -4,8 +4,8 @@ import Main from 'screens/Main'
 
 export default function () {
   return (
-    <div className="container mx-auto p-5 md:p-10 prose">
-      <Router base="/vac-calendar">
+    <div className="container prose mx-auto p-5 md:p-10">
+      <Router base="/mom-helper">
         <Switch>
           <Route
             path="/patient/:name"

@@ -1,55 +1,43 @@
 import { navigate } from 'wouter-preact/use-browser-location'
 import { useAtom } from 'jotai'
 import { useCallback } from 'preact/hooks'
-import VacTable from 'components/VacTable'
-import calculateCompletedVacs from 'helpers/calculateCompletedVacs'
-import nameToBirthDateStorage from 'atoms/nameToBirthDateStorage'
+import childrenDataStore from 'atoms/childrenDataStore'
 
 export default function ({ name }: { name: string }) {
-  const [patientsData, setPatientsData] = useAtom(nameToBirthDateStorage)
-  const birthDate = patientsData[name]
-  const { completedPercent, daysFromBirth } = calculateCompletedVacs(birthDate)
-
-  const today = new Date()
-  const birth = new Date(birthDate)
-
-  const yearsWithMonths = daysFromBirth / 365
-  const years = Math.floor(yearsWithMonths)
-  const months = Math.floor((yearsWithMonths - years) * 12)
+  const [patientsData, setPatientsData] = useAtom(childrenDataStore)
+  const currentChildrenIndex = patientsData.findIndex(
+    ({ name }) => name === name
+  )
 
   const deleteEntry = useCallback(() => {
-    if (!patientsData[name]) {
+    if (currentChildrenIndex < 0) {
       console.error('cant find the patient while deleting')
       return
     }
 
-    delete patientsData[name]
+    navigate('/mom-helper')
+    setPatientsData((prev) => prev.splice(currentChildrenIndex))
+  }, [currentChildrenIndex, setPatientsData])
 
-    navigate('/vac-calendar')
-    setPatientsData(patientsData)
-  }, [name, patientsData, setPatientsData])
+  if (currentChildrenIndex < 0) {
+    return <div>404</div>
+  }
 
   return (
     <div className="flex flex-col gap-x-2">
-      <div className="flex justify-between items-center">
+      <div className="flex items-center justify-between">
         <a
-          onClick={() => navigate('/vac-calendar')}
-          className="cursor-pointer hover:opacity-50 transition-opacity"
+          onClick={() => navigate('/mom-helper')}
+          className="cursor-pointer transition-opacity hover:opacity-50"
         >
           ◄ Go back
         </a>
 
-        <a className="text-red-400 cursor-pointer" onClick={deleteEntry}>
+        <a className="cursor-pointer text-red-400" onClick={deleteEntry}>
           Delete
         </a>
       </div>
-      <VacTable completedPercent={completedPercent} />
       <span>Name: {name}</span>
-      <span>Birth date: {birth.toLocaleDateString()}</span>
-      <span>Today is: {today.toLocaleDateString()}</span>
-      <span>
-        Age: {daysFromBirth} days ({years} years, {months} month(s))
-      </span>
     </div>
   )
 }

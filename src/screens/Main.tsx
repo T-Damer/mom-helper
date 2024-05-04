@@ -2,20 +2,20 @@ import { useAtomValue } from 'jotai'
 import { useAutoAnimate } from '@formkit/auto-animate/preact'
 import { useState } from 'preact/hooks'
 import CreatePatientCard from 'components/CreatePatientCard'
-import CrossIcon from 'components/CrossIcon'
+import CrossIcon from 'components/Icons/CrossIcon'
 import PatientCard from 'components/PatientCard'
-import SearchIcon from 'components/SearchIcon'
-import nameToBirthDateStorage from 'atoms/nameToBirthDateStorage'
+import SearchIcon from 'components/Icons/SearchIcon'
+import childrenDataStore from 'atoms/childrenDataStore'
 
 export default function () {
-  const patients = useAtomValue(nameToBirthDateStorage)
+  const patients = useAtomValue(childrenDataStore)
   const [parentRef] = useAutoAnimate()
   const [search, setSearch] = useState('')
 
   return (
     <div>
-      <h1>📆 Vaccination calendar</h1>
-      <label className="input input-bordered flex items-center gap-2 m-1">
+      <h1>👩‍🚀 Mom helper</h1>
+      <label className="input input-bordered m-1 flex items-center gap-2">
         <input
           type="text"
           className="grow"
@@ -27,14 +27,13 @@ export default function () {
       </label>
       <div className="flex flex-wrap" ref={parentRef}>
         <CreatePatientCard />
-        {Object.entries(patients)
-          .reverse()
-          .map(([name, birthDate], index) => {
-            if (!search || name.toLowerCase().includes(search.toLowerCase()))
-              return (
-                <PatientCard name={name} birthDate={birthDate} key={index} />
-              )
-          })}
+        {patients.reverse().map((child, index) => {
+          if (
+            !search ||
+            child.name.toLowerCase().includes(search.toLowerCase())
+          )
+            return <PatientCard {...child} key={index} />
+        })}
       </div>
     </div>
   )
