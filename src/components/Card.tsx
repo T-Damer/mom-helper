@@ -1,19 +1,18 @@
 import { PropsWithChildren } from 'preact/compat'
 
 interface CardProps extends PropsWithChildren {
-  dashedOutline?: boolean
   onPress?: () => void
 }
 
-export default function ({ children, dashedOutline, onPress }: CardProps) {
-  const outline = dashedOutline ? 'border-dashed' : 'border-solid'
-  const minWidth = dashedOutline ? '' : 'min-w-36'
-  const justify = dashedOutline ? 'justify-center' : 'justify-start'
-  const bgHover = dashedOutline ? 'opacity-100' : 'hover:bg-opacity-70'
+export default function ({ children, onPress }: CardProps) {
+  const minWidth = 'min-w-36'
+  const justify = 'justify-start'
+  const bgHover = 'hover:bg-opacity-70'
+  const border = 'border-2 border-solid border-primaryDarkTransparent'
 
   return (
     <div
-      className={`flex-1 ${bgHover} ${minWidth} ${justify} h-40 border-2 shadow-md ${outline} align-center m-1 flex cursor-pointer rounded-box p-3 transition-all`}
+      className={`flex flex-1 bg-white ${bgHover} ${minWidth} ${justify} ${border} align-center cursor-pointer rounded-3xl p-3 transition-all`}
       onClick={onPress}
     >
       {children}

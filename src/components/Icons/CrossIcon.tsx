@@ -1,4 +1,6 @@
-export default function ({ onPress }: { onPress: () => void }) {
+import OnPress from 'types/OnPress'
+
+export default function ({ onPress }: OnPress) {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"

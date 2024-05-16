@@ -2,6 +2,7 @@ import { navigate } from 'wouter-preact/use-browser-location'
 import { useAtom } from 'jotai'
 import { useCallback } from 'preact/hooks'
 import childrenDataStore from 'atoms/childrenDataStore'
+import Header from 'components/Header'
 
 export default function ({ name }: { name: string }) {
   const [patientsData, setPatientsData] = useAtom(childrenDataStore)
@@ -25,18 +26,7 @@ export default function ({ name }: { name: string }) {
 
   return (
     <div className="flex flex-col gap-x-2">
-      <div className="flex items-center justify-between">
-        <a
-          onClick={() => navigate('/mom-helper')}
-          className="cursor-pointer transition-opacity hover:opacity-50"
-        >
-          ◄ Go back
-        </a>
-
-        <a className="cursor-pointer text-red-400" onClick={deleteEntry}>
-          Delete
-        </a>
-      </div>
+      <Header />
       <span>Name: {name}</span>
     </div>
   )
