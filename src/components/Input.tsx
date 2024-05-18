@@ -20,12 +20,11 @@ export default function ({
   placeholder = 'Имя',
   inputType,
 }: InputProps) {
-  const [isFocused, setIsFocused] = useState(false)
   const inputRef = useRef<HTMLInputElement | null>(null)
 
   return (
     <label
-      className={`${border} text-primaryDark input flex h-16 items-center gap-2 rounded-3xl transition-all`}
+      className={`${border} input flex h-16 items-center gap-2 rounded-3xl text-primaryDark transition-all`}
     >
       <input
         className="grow"
@@ -34,14 +33,12 @@ export default function ({
         type={inputType}
         placeholder={placeholder}
         ref={inputRef}
-        onFocus={() => setIsFocused(true)}
-        onBlur={() => setIsFocused(false)}
         required
       />
       {inputType === 'date' && (
         <CalendarIcon onPress={() => inputRef.current?.showPicker()} />
       )}
-      {value && isFocused && <CrossIcon onPress={() => setValue('')} />}
+      {value && <CrossIcon onPress={() => setValue('')} />}
     </label>
   )
 }
