@@ -1,12 +1,12 @@
 import { ChildData } from 'atoms/childrenDataStore'
-import { navigate } from 'wouter-preact/use-browser-location'
+import CircleButton from 'components/CircleButton'
+import navigate from 'helpers/navigate'
 import { useCallback } from 'preact/hooks'
 import Card from 'components/Card'
-import CircleButton from 'components/CircleButton'
 
 export default function ({ name }: ChildData) {
   const onPress = useCallback(() => {
-    navigate(`/mom-helper/patient/${name}`)
+    navigate(`/patient/${name}`)
   }, [name])
 
   return (
@@ -15,7 +15,7 @@ export default function ({ name }: ChildData) {
         <div className="self-end p-2">
           <CircleButton />
         </div>
-        <span className="truncate-2 text-primaryDark p-2 text-2xl leading-snug">
+        <span className="truncate-2 p-2 text-2xl leading-snug text-primaryDark">
           {name}
         </span>
       </div>

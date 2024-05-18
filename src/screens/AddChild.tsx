@@ -3,6 +3,7 @@ import Button from 'components/Button'
 import Header from 'components/Header'
 import Input from 'components/Input'
 import TextHeader from 'components/TextHeader'
+import { goMain } from 'helpers/navigate'
 import { useSetAtom } from 'jotai'
 import { useCallback, useState } from 'preact/hooks'
 import { navigate } from 'wouter-preact/use-browser-location'
@@ -20,7 +21,7 @@ export default function () {
       new ChildData(name, birthDate, Number(mass), Number(height)),
     ])
 
-    navigate('/mom-helper')
+    goMain()
   }, [name, birthDate, mass, height])
 
   return (
