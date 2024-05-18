@@ -27,7 +27,7 @@ export default function () {
   return (
     <div className="flex h-full flex-col gap-y-4">
       <Header />
-      <TextHeader text="Добавьте ребенка" />
+      <TextHeader>Добавьте ребенка</TextHeader>
       <Input value={name} setValue={setName} />
       <Input
         value={birthDate}

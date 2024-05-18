@@ -1,3 +1,5 @@
-export default function ({ text = 'Выберите ребенка' }: { text?: string }) {
-  return <h1 className="text-primaryDark text-3xl font-medium">{text}</h1>
+import { PropsWithChildren } from 'preact/compat'
+
+export default function ({ children = 'Выберите ребенка' }: PropsWithChildren) {
+  return <h1 className="text-3xl font-medium text-primaryDark">{children}</h1>
 }

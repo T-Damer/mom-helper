@@ -7,8 +7,9 @@ interface CardProps extends PropsWithChildren {
 export default function ({ children, onPress }: CardProps) {
   const minWidth = 'min-w-36'
   const justify = 'justify-start'
-  const bgHover = 'hover:bg-opacity-70'
-  const border = 'border-2 border-solid border-primaryDarkTransparent'
+  const bgHover = 'hover:bg-base-100'
+  const border =
+    'border-2 border-solid border-primaryDarkTransparent hover:border-primary'
 
   return (
     <div

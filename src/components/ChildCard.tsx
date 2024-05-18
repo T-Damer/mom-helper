@@ -4,10 +4,10 @@ import navigate from 'helpers/navigate'
 import { useCallback } from 'preact/hooks'
 import Card from 'components/Card'
 
-export default function ({ name }: ChildData) {
+export default function ({ id, name }: ChildData) {
   const onPress = useCallback(() => {
-    navigate(`/patient/${name}`)
-  }, [name])
+    navigate(`/patient/${id}`)
+  }, [id])
 
   return (
     <Card onPress={onPress}>
