@@ -15,7 +15,7 @@ export default function ({ id, name }: ChildData) {
         <div className="self-end p-2">
           <CircleButton />
         </div>
-        <span className="truncate-2 p-2 text-2xl text-primaryDark leading-snug">
+        <span className="truncate-2 p-2 text-2xl text-primary leading-snug">
           {name}
         </span>
       </div>

@@ -10,7 +10,25 @@ module.exports = {
       {
         light: {
           ...require('daisyui/src/theming/themes')['light'],
-          'base-100': '#FAFAFA',
+          bgLight: '#FAFAFA',
+          commonWhite: 'var(--common-white)',
+          commonGray: '#D9D9D9',
+          primary: '#4B64EC',
+          primaryTransparent: '#4B64EC16',
+          primaryDark: '#373061',
+          primaryDarkSemiTransparent: '#37306150',
+          primaryDarkTransparent: '#37306112',
+        },
+        dark: {
+          ...require('daisyui/src/theming/themes')['dark'],
+          bgLight: '#FAFAFA',
+          commonWhite: 'var(--common-white)',
+          commonGray: '#D9D9D9',
+          primary: '#4B64EC',
+          primaryTransparent: '#4B64EC16',
+          primaryDark: '#373061',
+          primaryDarkSemiTransparent: '#37306150',
+          primaryDarkTransparent: '#37306112',
         },
       },
     ],
@@ -19,16 +37,6 @@ module.exports = {
     extend: {
       rotate: {
         135: '135deg',
-      },
-      colors: {
-        bgLight: '#FAFAFA',
-        commonWhite: 'var(--common-white)',
-        commonGray: '#D9D9D9',
-        primary: '#4B64EC',
-        primaryTransparent: '#4B64EC16',
-        primaryDark: '#373061',
-        primaryDarkSemiTransparent: '#37306150',
-        primaryDarkTransparent: '#37306112',
       },
     },
   },

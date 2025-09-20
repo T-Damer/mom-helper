@@ -21,7 +21,7 @@ export default function () {
           return <ChildCard {...child} key={index} />
       })}
       <Button onPress={() => navigate('/add')}>
-        добавить ребенка <Plus />
+        Добавить ребенка <Plus />
       </Button>
     </div>
   )

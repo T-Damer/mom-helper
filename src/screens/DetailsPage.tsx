@@ -6,6 +6,7 @@ import Header from 'components/Header'
 import Elevation from 'components/Icons/Elevation'
 import Nutrition from 'components/Icons/Nutrition'
 import Plus from 'components/Icons/Plus'
+import Syringe from 'components/Icons/Syringe'
 import Text from 'components/Text'
 import getAge from 'helpers/getAge'
 import navigate, { goMain } from 'helpers/navigate'
@@ -42,6 +43,10 @@ export default function ({ childId }: { childId: string }) {
       </Header>
 
       <div className="mb-4 grid grid-cols-2 gap-2">
+        <DetailsCard path="/vac" id={childId}>
+          <Syringe color="#4B64EC" />
+          <Text>Вакцинация</Text>
+        </DetailsCard>
         <DetailsCard path="/development" id={childId}>
           <Elevation color="#1DC06E" />
           <Text>Развитие организма</Text>
@@ -53,7 +58,7 @@ export default function ({ childId }: { childId: string }) {
       </div>
 
       <Button onPress={() => navigate(`/diet/${childId}`)}>
-        внести данные <Plus />
+        Внести данные <Plus />
       </Button>
     </div>
   )

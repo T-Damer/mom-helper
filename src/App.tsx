@@ -4,6 +4,7 @@ import Development from 'screens/Development'
 import Diet from 'screens/Diet'
 import LoadingDiet from 'screens/LoadingDiet'
 import Main from 'screens/Main'
+import VacPage from 'screens/VacPage'
 import { Route, Router, Switch } from 'wouter-preact'
 
 export default function () {
@@ -26,6 +27,10 @@ export default function () {
           <Route
             path="/development/:childId"
             component={({ params }) => <Development {...params} />}
+          />
+          <Route
+            path="/vac/:childId"
+            component={({ params }) => <VacPage {...params} />}
           />
 
           <Route path="/add" component={AddChild} />

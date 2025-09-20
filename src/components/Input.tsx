@@ -24,10 +24,10 @@ export default function ({
 
   return (
     <label
-      className={`${border} input flex h-16 items-center gap-2 rounded-3xl text-primaryDark transition-all`}
+      className={`${border} input flex h-16 items-center gap-2 rounded-3xl text-base-content transition-all`}
     >
       <input
-        className="grow"
+        className="grow placeholder:opacity-50"
         value={String(value)}
         onChange={(e) => setValue(e.currentTarget.value)}
         type={inputType}

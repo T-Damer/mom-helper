@@ -8,7 +8,7 @@ export default function (path: string) {
 }
 
 export function useGoBack() {
-  if (history.state) history.back()
+  if (history.length > 0) history.back()
   else goMain()
 }
 
