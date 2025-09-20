@@ -22,6 +22,6 @@ jobs:
       - name: Build code
         run: yarn build
       - name: Setup Biome
-        uses: biomejs/setup-biome@v2
+        uses: biomejs/setup-biome@v2.0.0
       - name: Run Biome
         run: biome ci .
