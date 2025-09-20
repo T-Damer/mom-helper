@@ -1,16 +1,16 @@
+import childrenDataStore from 'atoms/childrenDataStore'
+import Button from 'components/Button'
+import ChildDetailsHeader from 'components/ChildDetailsHeader'
+import DetailsCard from 'components/DetailsCard'
+import Header from 'components/Header'
+import Elevation from 'components/Icons/Elevation'
+import Nutrition from 'components/Icons/Nutrition'
+import Plus from 'components/Icons/Plus'
+import Text from 'components/Text'
+import getAge from 'helpers/getAge'
+import navigate, { goMain } from 'helpers/navigate'
 import { useAtom } from 'jotai'
 import { useCallback } from 'preact/hooks'
-import childrenDataStore from 'atoms/childrenDataStore'
-import Header from 'components/Header'
-import ChildDetailsHeader from 'components/ChildDetailsHeader'
-import Button from 'components/Button'
-import Plus from 'components/Icons/Plus'
-import navigate, { goMain } from 'helpers/navigate'
-import getAge from 'helpers/getAge'
-import DetailsCard from 'components/DetailsCard'
-import Elevation from 'components/Icons/Elevation'
-import Text from 'components/Text'
-import Nutrition from 'components/Icons/Nutrition'
 
 export default function ({ childId }: { childId: string }) {
   const [patientsData, setPatientsData] = useAtom(childrenDataStore)
@@ -18,7 +18,7 @@ export default function ({ childId }: { childId: string }) {
     ({ id }) => id === childId
   )
 
-  const deleteEntry = useCallback(() => {
+  const _deleteEntry = useCallback(() => {
     if (currentChildrenIndex < 0) {
       console.error('cant find the patient while deleting')
       return

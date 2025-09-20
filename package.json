@@ -6,8 +6,8 @@
   "scripts": {
     "start": "vite",
     "build": "cross-env NODE_ENV=production tsc && vite build",
-    "pretty": "prettier --write src",
-    "lint": "yarn pretty && eslint --max-warnings 0 --ext ts,tsx,json src",
+    "biome-check": "biome check",
+    "biome-write": "biome check --write",
     "preview": "yarn build && yarn vite preview"
   },
   "dependencies": {

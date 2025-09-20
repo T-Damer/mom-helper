@@ -1,8 +1,8 @@
 import { ChildData } from 'atoms/childrenDataStore'
+import Card from 'components/Card'
 import CircleButton from 'components/CircleButton'
 import navigate from 'helpers/navigate'
 import { useCallback } from 'preact/hooks'
-import Card from 'components/Card'
 
 export default function ({ id, name }: ChildData) {
   const onPress = useCallback(() => {
@@ -15,7 +15,7 @@ export default function ({ id, name }: ChildData) {
         <div className="self-end p-2">
           <CircleButton />
         </div>
-        <span className="truncate-2 p-2 text-2xl leading-snug text-primaryDark">
+        <span className="truncate-2 p-2 text-2xl text-primaryDark leading-snug">
           {name}
         </span>
       </div>

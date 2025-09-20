@@ -1,6 +1,6 @@
-import { useRef, useState } from 'preact/hooks'
 import CalendarIcon from 'components/Icons/CalendarIcon'
 import CrossIcon from 'components/Icons/CrossIcon'
+import { useRef, useState } from 'preact/hooks'
 
 type InputType = 'date' | 'string' | 'number'
 

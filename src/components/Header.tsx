@@ -1,6 +1,6 @@
 import ArrowBack from 'components/Icons/ArrowBack'
-import { PropsWithChildren } from 'preact/compat'
 import { useGoBack } from 'helpers/navigate'
+import { PropsWithChildren } from 'preact/compat'
 
 export const GoBackButton = () => {
   return (
@@ -12,7 +12,7 @@ export const GoBackButton = () => {
 
 export default function ({ children = <GoBackButton /> }: PropsWithChildren) {
   return (
-    <div className="text-md my-4 flex h-12 w-full flex-row items-center gap-x-2 py-2 font-semibold text-primaryDark">
+    <div className="my-4 flex h-12 w-full flex-row items-center gap-x-2 py-2 font-semibold text-md text-primaryDark">
       {children}
     </div>
   )

@@ -1,14 +1,14 @@
-import { Route, Router, Switch } from 'wouter-preact'
-import DetailsPage from 'screens/DetailsPage'
-import Main from 'screens/Main'
 import AddChild from 'screens/AddChild'
+import DetailsPage from 'screens/DetailsPage'
+import Development from 'screens/Development'
 import Diet from 'screens/Diet'
 import LoadingDiet from 'screens/LoadingDiet'
-import Development from 'screens/Development'
+import Main from 'screens/Main'
+import { Route, Router, Switch } from 'wouter-preact'
 
 export default function () {
   return (
-    <div className="container prose mx-auto min-h-dvh p-5 md:p-10">
+    <div className="prose container mx-auto min-h-dvh p-5 md:p-10">
       <Router base="/mom-helper">
         <Switch>
           <Route

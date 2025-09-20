@@ -13,7 +13,7 @@ export default function ({ children, onPress }: CardProps) {
 
   return (
     <div
-      className={`flex flex-1 bg-white ${bgHover} ${minWidth} ${justify} ${border} align-center cursor-pointer rounded-3xl p-3 transition-all`}
+      className={`flex flex-1 bg-white ${bgHover} ${minWidth} ${justify} ${border} cursor-pointer rounded-3xl p-3 align-center transition-all`}
       onClick={onPress}
     >
       {children}

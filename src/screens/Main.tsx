@@ -1,12 +1,12 @@
-import { useAtomValue } from 'jotai'
-import { useState } from 'preact/hooks'
-import ChildCard from 'components/ChildCard'
 import childrenDataStore from 'atoms/childrenDataStore'
-import TextHeader from 'components/TextHeader'
 import Button from 'components/Button'
+import ChildCard from 'components/ChildCard'
 import Plus from 'components/Icons/Plus'
 import Input from 'components/Input'
+import TextHeader from 'components/TextHeader'
 import navigate from 'helpers/navigate'
+import { useAtomValue } from 'jotai'
+import { useState } from 'preact/hooks'
 
 export default function () {
   const patients = useAtomValue(childrenDataStore)
