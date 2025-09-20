@@ -1,6 +1,9 @@
 import { SVGProps } from 'preact/compat'
 
-export default function (props: SVGProps<SVGSVGElement>) {
+export default function ({
+  color,
+  ...props
+}: SVGProps<SVGSVGElement> & { color: string }) {
   return (
     <svg
       width="24"
@@ -12,7 +15,7 @@ export default function (props: SVGProps<SVGSVGElement>) {
     >
       <path
         d="M18 2L22 6M17 7L20 4M19 9L8.7 19.3C7.7 20.3 6.2 20.3 5.3 19.3L4.7 18.7C3.7 17.7 3.7 16.2 4.7 15.3L15 5M9 11L13 15M5 19L2 22M14 4L20 10"
-        stroke="currentColor"
+        stroke={color}
         stroke-width="2"
         stroke-linecap="round"
         stroke-linejoin="round"

@@ -18,7 +18,15 @@ export default function () {
   const addChild = useCallback(() => {
     setNewChild((prev) => [
       ...prev,
-      new ChildData(name, birthDate, Number(mass), Number(height)),
+      {
+        id: window.crypto.randomUUID(),
+        name,
+        gender: 'male',
+        birthDate,
+        weightWhenBornGrams: Number(mass),
+        heightWhenBornCentimeters: Number(height),
+        whenBorn: '22-26',
+      },
     ])
 
     goMain()

@@ -1,19 +1,15 @@
 import { atomWithStorage } from 'jotai/utils'
 
-export class ChildData {
+const whenBornOptions = ['22-26', '27-29', '30-32', '33-36', '>37']
+
+export interface ChildData {
   id: string
   name: string
+  gender: 'male' | 'female'
+  weightWhenBornGrams: number
+  heightWhenBornCentimeters: number
   birthDate: string
-  mass: number
-  height: number
-
-  constructor(name: string, birthDate: string, mass: number, height: number) {
-    this.id = window.crypto.randomUUID()
-    this.name = name
-    this.birthDate = birthDate
-    this.mass = mass
-    this.height = height
-  }
+  whenBorn: (typeof whenBornOptions)[number]
 }
 
 export default atomWithStorage<ChildData[]>('childrenData', [])
