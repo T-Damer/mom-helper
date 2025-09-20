@@ -1,8 +1,7 @@
 import { atomWithStorage } from 'jotai/utils'
-import type BloodSample from 'types/BloodSample'
 
 interface TestsDataStore {
-  [id: string]: BloodSample
+  [id: string]: string
 }
 
 export default atomWithStorage<TestsDataStore>('testsData', {}, undefined, {
