@@ -1,16 +1,14 @@
 import childrenDataStore from 'atoms/childrenDataStore'
-import Button from 'components/Button'
 import ChildDetailsHeader from 'components/ChildDetailsHeader'
 import DetailsCard from 'components/DetailsCard'
 import Header from 'components/Header'
 import Elevation from 'components/Icons/Elevation'
 import HumanMagnified from 'components/Icons/HumanMagnified'
 import Nutrition from 'components/Icons/Nutrition'
-import Plus from 'components/Icons/Plus'
 import Syringe from 'components/Icons/Syringe'
 import Text from 'components/Text'
 import getAge from 'helpers/getAge'
-import navigate, { goMain } from 'helpers/navigate'
+import { goMain } from 'helpers/navigate'
 import { useAtom } from 'jotai'
 import { useCallback } from 'preact/hooks'
 
@@ -61,10 +59,6 @@ export default function ({ childId }: { childId: string }) {
           <Text>Расчет питания</Text>
         </DetailsCard>
       </div>
-
-      <Button onPress={() => navigate(`/diet/${childId}`)}>
-        Внести данные <Plus />
-      </Button>
     </div>
   )
 }
