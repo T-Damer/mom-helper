@@ -1,7 +1,7 @@
 import childrenDataStore from 'atoms/childrenDataStore'
 import ChildDetailsHeader from 'components/ChildDetailsHeader'
 import DetailsCard from 'components/DetailsCard'
-import Header from 'components/Header'
+import Header, { GoBackButton } from 'components/Header'
 import Elevation from 'components/Icons/Elevation'
 import HumanMagnified from 'components/Icons/HumanMagnified'
 import Nutrition from 'components/Icons/Nutrition'
@@ -38,6 +38,8 @@ export default function ({ childId }: { childId: string }) {
   return (
     <div className="flex h-full flex-col gap-x-2">
       <Header>
+        <GoBackButton />
+        <div className="w-full" />
         <ChildDetailsHeader name={name} age={`${years} лет, ${months} мес`} />
       </Header>
 
