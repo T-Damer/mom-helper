@@ -33,14 +33,17 @@ export default function ({ childId }: { childId: string }) {
   }
 
   const { name, birthDate } = patientsData[currentChildrenIndex]
-  const { years, months } = getAge(birthDate)
+  const { years, months, weeks, days } = getAge(birthDate)
+
+  const age =
+    years > 0 ? `${years} лет, ${months} мес` : `${weeks} нед, ${days} дн`
 
   return (
     <div className="flex h-full flex-col gap-x-2">
       <Header>
         <GoBackButton />
         <div className="w-full" />
-        <ChildDetailsHeader name={name} age={`${years} лет, ${months} мес`} />
+        <ChildDetailsHeader name={name} age={age} />
       </Header>
 
       <div className="mb-4 grid grid-cols-2 gap-2">
