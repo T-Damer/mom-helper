@@ -1,11 +1,16 @@
-import { PropsWithChildren } from 'preact/compat'
+import { HTMLProps, PropsWithChildren } from 'preact/compat'
 import OnPress from 'types/OnPress'
 
-interface ButtonProps extends PropsWithChildren, OnPress {
+interface ButtonProps extends OnPress, HTMLProps<HTMLDivElement> {
   semiTransparent?: boolean
 }
 
-export default function ({ children, onPress, semiTransparent }: ButtonProps) {
+export default function ({
+  children,
+  onPress,
+  semiTransparent,
+  ...props
+}: ButtonProps) {
   const bg = semiTransparent
     ? 'bg-primaryTransparent hover:bg-primary '
     : 'bg-primary hover:bg-primaryDark'
@@ -15,6 +20,7 @@ export default function ({ children, onPress, semiTransparent }: ButtonProps) {
 
   return (
     <div
+      {...props}
       className={`btn h-16 rounded-3xl border-none shadow-none disabled:opacity-50 ${bg} ${textColor}`}
       onClick={onPress}
     >

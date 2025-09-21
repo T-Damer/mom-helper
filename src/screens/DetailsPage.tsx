@@ -48,7 +48,7 @@ export default function ({ childId }: { childId: string }) {
           <Syringe color="#4B64EC" />
           <Text>Календарь вакцинации</Text>
         </DetailsCard>
-        <DetailsCard path="/development" id={childId}>
+        <DetailsCard path="/weaning" id={childId}>
           <Elevation color="#1DC06E" />
           <Text>Календарь прикормов</Text>
         </DetailsCard>

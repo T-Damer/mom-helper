@@ -1,5 +1,4 @@
 import Cradle from 'components/Icons/Cradle'
-import Elevation from 'components/Icons/Elevation'
 import navigate from 'helpers/navigate'
 
 export default function ({ name, age }: { name: string; age: string }) {
@@ -18,9 +17,9 @@ export default function ({ name, age }: { name: string; age: string }) {
         </div>
       </div>
 
-      <div className="btn btn-outline rounded-3xl border-primaryDarkTransparent text-primaryDark">
+      {/* <div className="btn btn-outline rounded-3xl border-primaryDarkTransparent text-primaryDark">
         Динамика <Elevation />
-      </div>
+      </div> */}
     </div>
   )
 }
