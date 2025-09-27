@@ -5609,6 +5609,7 @@ __metadata:
     "@types/node": "npm:^20.12.8"
     "@vitejs/plugin-react": "npm:^4.2.1"
     autoprefixer: "npm:^10.4.19"
+    clsx: "npm:^2.1.1"
     cross-env: "npm:^7.0.3"
     daisyui: "npm:^4.10.5"
     jotai: "npm:^2.8.0"

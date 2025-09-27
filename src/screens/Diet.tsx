@@ -1,3 +1,4 @@
+import diet from 'assets/diet.png'
 import Header, { GoBackButton } from 'components/Header'
 
 export default function ({ childId }: { childId: string }) {
@@ -8,7 +9,9 @@ export default function ({ childId }: { childId: string }) {
         <GoBackButton />
         Питание ребенка
       </Header>
-      <div className="flex flex-col gap-y-2"></div>
+      <div className="flex flex-col gap-y-2">
+        <img src={diet} />
+      </div>
     </>
   )
 }

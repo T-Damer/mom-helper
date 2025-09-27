@@ -1,3 +1,4 @@
+import weaning from 'assets/weaning.png'
 import Header, { GoBackButton } from 'components/Header'
 
 export default function ({ childId }: { childId: string }) {
@@ -8,7 +9,8 @@ export default function ({ childId }: { childId: string }) {
         <GoBackButton />
         Прикорм
       </Header>
-      <div className="flex flex-col gap-y-2"></div>
+
+      <img src={weaning} />
     </>
   )
 }
