@@ -1,3 +1,4 @@
+import { useAutoAnimate } from '@formkit/auto-animate/react'
 import childrenDataStore from 'atoms/childrenDataStore'
 import Button from 'components/Button'
 import ChildCard from 'components/ChildCard'
@@ -11,9 +12,10 @@ import { useState } from 'preact/hooks'
 export default function () {
   const patients = useAtomValue(childrenDataStore)
   const [search, setSearch] = useState('')
+  const [parent] = useAutoAnimate()
 
   return (
-    <div className="flex flex-col gap-y-2">
+    <div className="flex flex-col gap-y-2" ref={parent}>
       <TextHeader />
       <Input value={search} setValue={setSearch} placeholder="Поиск по имени" />
       {patients.reverse().map((child, index) => {

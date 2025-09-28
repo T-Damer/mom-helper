@@ -1,7 +1,8 @@
+import clsx from 'clsx'
 import ArrowBack from 'components/Icons/ArrowBack'
 import getAge from 'helpers/getAge'
 import { useGoBack } from 'helpers/navigate'
-import { PropsWithChildren } from 'preact/compat'
+import { JSX, PropsWithChildren } from 'preact/compat'
 
 export const GoBackButton = () => {
   return (
@@ -12,46 +13,39 @@ export const GoBackButton = () => {
 }
 
 const Age = ({ birthDate }: { birthDate: string }) => {
-  const { years, months, weeks, days } = getAge(birthDate)
-
-  const toDisplay = []
-
-  if (years > 0) {
-    toDisplay.push(`${years} лет`)
-  }
-
-  if (months > 0) {
-    toDisplay.push(`${months} мес`)
-  }
-
-  if (weeks > 0) {
-    toDisplay.push(`${weeks} нед`)
-  }
-
-  if (days > 0) {
-    toDisplay.push(`${days} дн`)
-  }
-
-  const age = toDisplay.join(', ')
+  const { stringified } = getAge(birthDate)
 
   return (
     <>
       <div className="w-full" />
-      <span className="shrink-0">{age}</span>
+      <span className="shrink-0">{stringified}</span>
     </>
   )
 }
 
 export default function ({
-  children = <GoBackButton />,
+  children,
   withGoBack = true,
   birthDate,
-}: PropsWithChildren & { withGoBack?: boolean; birthDate?: string }) {
+  rightItem,
+}: PropsWithChildren & {
+  withGoBack?: boolean
+  birthDate?: string
+  rightItem?: JSX.Element
+}) {
   return (
-    <div className="my-4 flex h-12 w-full flex-row items-center gap-x-2 py-2 font-semibold text-md text-primaryDark">
-      {withGoBack && <GoBackButton />}
-      <div className="shrink-0">{children}</div>
+    <div
+      className={clsx(
+        'my-4 flex h-12 w-full flex-row items-center gap-x-2 py-2 font-semibold text-md text-primaryDark',
+        (birthDate || rightItem) && 'justify-between'
+      )}
+    >
+      <div className="flex items-center gap-x-2">
+        {withGoBack && <GoBackButton />}
+        <div className="shrink-0">{children}</div>
+      </div>
       {birthDate && <Age birthDate={birthDate} />}
+      {rightItem}
     </div>
   )
 }

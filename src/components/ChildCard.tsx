@@ -4,7 +4,7 @@ import CircleButton from 'components/CircleButton'
 import navigate from 'helpers/navigate'
 import { useCallback } from 'preact/hooks'
 
-export default function ({ id, name }: ChildData) {
+export default function ({ id, name, birthDate }: ChildData) {
   const onPress = useCallback(() => {
     navigate(`/patient/${id}`)
   }, [id])
@@ -15,9 +15,14 @@ export default function ({ id, name }: ChildData) {
         <div className="self-end p-2">
           <CircleButton />
         </div>
-        <span className="truncate-2 p-2 text-2xl text-primary leading-snug">
-          {name}
-        </span>
+        <div className="flex flex-col px-2">
+          <span className="truncate-2 font-bold text-2xl text-primary leading-snug">
+            {name}
+          </span>
+          <span className="truncate-2 text-2xl text-primary leading-snug">
+            {new Date(birthDate).toLocaleDateString()}
+          </span>
+        </div>
       </div>
     </Card>
   )

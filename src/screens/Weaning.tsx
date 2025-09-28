@@ -1,13 +1,29 @@
 import weaning from 'assets/weaning.png'
-import Header, { GoBackButton } from 'components/Header'
+import childrenDataStore from 'atoms/childrenDataStore'
+import Header from 'components/Header'
+import WeaningTable from 'components/WeaningTable'
+import { useAtomValue } from 'jotai'
 
 export default function ({ childId }: { childId: string }) {
-  console.log(childId)
+  const child = useAtomValue(childrenDataStore).find(
+    (child) => child.id === childId
+  )
+
+  if (!child) return <div>Данные ребенка не найдены</div>
+
   return (
     <>
-      <Header>Прикорм</Header>
+      <Header birthDate={child.birthDate}>Прикорм</Header>
 
-      <img src={weaning} />
+      <WeaningTable birthDate={child.birthDate} />
+      <div className="mt-2 flex flex-col gap-1 text-xs">
+        <span>* - без добавления растительного сырья</span>
+        <span>** - не в качестве первого прикорма</span>
+        <span>*** - по показаниям с 6 месяцев</span>
+        <span>**** - добавляется к овощному пюре</span>
+        <span>***** - добавляется к каше</span>
+      </div>
+      {/* <img src={weaning} /> */}
     </>
   )
 }

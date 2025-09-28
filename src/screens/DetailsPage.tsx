@@ -36,10 +36,9 @@ export default function ({ childId }: { childId: string }) {
 
   return (
     <div className="flex h-full flex-col gap-x-2">
-      <Header>
-        <div className="w-full" />
-        <ChildDetailsHeader name={name} birthDate={birthDate} />
-      </Header>
+      <Header
+        rightItem={<ChildDetailsHeader name={name} birthDate={birthDate} />}
+      />
 
       <div className="mb-4 grid grid-cols-2 gap-2">
         <DetailsCard path="/vac" id={childId}>
