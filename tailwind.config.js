@@ -35,6 +35,9 @@ module.exports = {
   },
   theme: {
     extend: {
+      colors: {
+        commonWhite: 'var(--common-white)',
+      },
       rotate: {
         135: '135deg',
       },

@@ -1,7 +1,8 @@
 import AddChild from 'screens/AddChild'
 import DetailsPage from 'screens/DetailsPage'
 import Development from 'screens/Development'
-import Diet from 'screens/Diet'
+import BreastFeeding from 'screens/Diet/BreastFeeding'
+import Diet from 'screens/Diet/Diet'
 import Main from 'screens/Main'
 import SpecialistsPage from 'screens/SpecialistsPage'
 import VacPage from 'screens/VacPage'
@@ -20,6 +21,10 @@ export default function () {
           <Route
             path="/diet/:childId"
             component={({ params }) => <Diet {...params} />}
+          />
+          <Route
+            path="/diet/breast/:childId"
+            component={({ params }) => <BreastFeeding {...params} />}
           />
           <Route
             path="/weaning/:childId"

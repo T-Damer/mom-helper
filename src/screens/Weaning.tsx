@@ -5,10 +5,7 @@ export default function ({ childId }: { childId: string }) {
   console.log(childId)
   return (
     <>
-      <Header>
-        <GoBackButton />
-        Прикорм
-      </Header>
+      <Header>Прикорм</Header>
 
       <img src={weaning} />
     </>

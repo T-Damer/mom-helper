@@ -352,7 +352,7 @@ export default function ExamsTable({
               {ages.map((age) => (
                 <th
                   key={age}
-                  className={`border p-2 text-center text-xs ${age === currentAgeString ? 'bg-neutral font-bold' : ''}`}
+                  className={`border p-2 text-center text-xs ${age === currentAgeString ? 'bg-accent font-bold' : ''}`}
                 >
                   {age}
                 </th>

@@ -29,21 +29,16 @@ export default function ({ childId }: { childId: string }) {
   }, [currentChildrenIndex, setPatientsData])
 
   if (currentChildrenIndex < 0) {
-    return <div>404</div>
+    return <div>Данные ребенка не найдены</div>
   }
 
   const { name, birthDate } = patientsData[currentChildrenIndex]
-  const { years, months, weeks, days } = getAge(birthDate)
-
-  const age =
-    years > 0 ? `${years} лет, ${months} мес` : `${weeks} нед, ${days} дн`
 
   return (
     <div className="flex h-full flex-col gap-x-2">
       <Header>
-        <GoBackButton />
         <div className="w-full" />
-        <ChildDetailsHeader name={name} age={age} />
+        <ChildDetailsHeader name={name} birthDate={birthDate} />
       </Header>
 
       <div className="mb-4 grid grid-cols-2 gap-2">

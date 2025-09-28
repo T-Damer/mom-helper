@@ -16,10 +16,7 @@ export default function ({ childId }: { childId: string }) {
 
   return (
     <>
-      <Header>
-        <GoBackButton />
-        Календарь вакцинации
-      </Header>
+      <Header>Календарь вакцинации</Header>
       <VacTable completedPercent={completedPercent} />
     </>
   )

@@ -16,10 +16,7 @@ export default function ({ childId }: { childId: string }) {
 
   return (
     <>
-      <Header>
-        <GoBackButton />
-        Календарь посещения специалистов
-      </Header>
+      <Header>Календарь посещения специалистов</Header>
       <div className="flex flex-col gap-y-2">
         <ExamsTable birthDate={currentChildren.birthDate} />
 

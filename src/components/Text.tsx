@@ -11,7 +11,7 @@ export function Header2({
   )
 }
 
-export default function ({
+export default function Text({
   children,
   ...other
 }: PropsWithChildren & React.HTMLAttributes<HTMLSpanElement>) {

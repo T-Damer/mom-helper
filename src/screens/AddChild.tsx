@@ -62,7 +62,7 @@ export default function () {
     <div className="flex h-full flex-col gap-y-4">
       <Header />
       <TextHeader>Добавьте ребенка</TextHeader>
-      <Input value={name} setValue={setName} />
+      <Input value={name} setValue={setName} legend="Имя ребенка" />
       <Select
         legend="Пол ребенка"
         options={genderOptions}
@@ -72,19 +72,22 @@ export default function () {
       <Input
         value={birthDate}
         setValue={setBirthDate}
-        placeholder="Дата рождения"
+        legend="Дата рождения"
+        placeholder="__.__.____"
         inputType="date"
       />
       <Input
         value={mass}
         setValue={setMass}
-        placeholder="Масса тела при рождении, г"
+        legend="Масса при рождении"
+        placeholder="Граммы"
         inputType="number"
       />
       <Input
         value={height}
         setValue={setHeight}
-        placeholder="Рост при рождении, см"
+        legend="Рост при рождении"
+        placeholder="Сантиметры"
         inputType="number"
       />
       <Select
