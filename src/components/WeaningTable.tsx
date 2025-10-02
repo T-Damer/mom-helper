@@ -57,7 +57,7 @@ export default function WeaningTable({ birthDate }: { birthDate: string }) {
     <div className="flex flex-col gap-y-2">
       <WeaningRecommendations recommendations={currentRecommendations} />
       <div className="overflow-x-auto">
-        <table className="table-zebra table-pin-rows table-pin-cols table w-full">
+        <table className="table-zebra table w-full">
           <thead>
             <tr>
               <th className="bg-base-200">
