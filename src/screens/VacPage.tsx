@@ -1,6 +1,10 @@
 import childrenDataStore from 'atoms/childrenDataStore'
-import Header, { GoBackButton } from 'components/Header'
-import VacCalendar from 'components/VacCalendar/VacCalendar'
+import Header from 'components/Header'
+import VacCalendar, {
+  getVaccinationInfo,
+} from 'components/VacCalendar/VacCalendar'
+import VacCalendarInfo from 'components/VacCalendar/VacCalendarInfo'
+import VacCalendarLegend from 'components/VacCalendar/VacCalendarLegend'
 import getAge from 'helpers/getAge'
 import { useAtom } from 'jotai'
 
@@ -15,11 +19,22 @@ export default function ({ childId }: { childId: string }) {
 
   const birthDate = currentChildren?.birthDate
   const { years, months } = getAge(birthDate)
+  const childAgeInMonths = years * 12 + months
+
+  const { previousVaccination, nextVaccination } =
+    getVaccinationInfo(childAgeInMonths)
 
   return (
     <>
       <Header>Календарь вакцинации</Header>
-      <VacCalendar childAgeInMonths={years * 12 + months} />
+      <div className="space-y-4">
+        <VacCalendarInfo
+          previousVaccination={previousVaccination}
+          nextVaccination={nextVaccination}
+        />
+        <VacCalendar childAgeInMonths={childAgeInMonths} />
+        <VacCalendarLegend />
+      </div>
     </>
   )
 }

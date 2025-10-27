@@ -1,5 +1,4 @@
 import clsx from 'clsx'
-import React from 'react'
 
 type VaccinationEntry = {
   text: string
@@ -244,11 +243,7 @@ interface VacCalendarProps {
   childAgeInMonths?: number
 }
 
-export default function VacCalendar({ childAgeInMonths }: VacCalendarProps) {
-  const getAgeIndex = (age: string): number => {
-    return AGES.indexOf(age)
-  }
-
+export function getVaccinationInfo(childAgeInMonths?: number) {
   const getCurrentAgeIndex = (): number => {
     if (!childAgeInMonths) return -1
 
@@ -275,7 +270,86 @@ export default function VacCalendar({ childAgeInMonths }: VacCalendarProps) {
     return 0 // 0 months (newborn)
   }
 
+  const formatAgeText = (age: string): string => {
+    if (age.includes('лет')) return age
+    const num = Number.parseFloat(age)
+    if (num < 12) {
+      return num === 1 ? '1 месяц' : `${age} месяцев`
+    }
+    return `${age} месяцев`
+  }
+
   const currentAgeIndex = getCurrentAgeIndex()
+
+  const getPreviousVaccinations = (): {
+    age: string
+    vaccines: string[]
+  } | null => {
+    if (currentAgeIndex === -1) return null
+
+    const currentAge = AGES[currentAgeIndex]
+    const vaccines: string[] = []
+
+    VACCINATIONS.forEach((vac) => {
+      if (vac.schedule[currentAge]) {
+        vaccines.push(vac.name)
+      }
+    })
+
+    return vaccines.length > 0
+      ? { age: formatAgeText(currentAge), vaccines }
+      : null
+  }
+
+  const getNextVaccinations = (): {
+    age: string
+    vaccines: string[]
+  } | null => {
+    if (currentAgeIndex === -1) {
+      // If no age provided, show first vaccinations
+      const vaccines: string[] = []
+      VACCINATIONS.forEach((vac) => {
+        if (vac.schedule[AGES[0]]) {
+          vaccines.push(vac.name)
+        }
+      })
+      return vaccines.length > 0
+        ? { age: formatAgeText(AGES[0]), vaccines }
+        : null
+    }
+
+    // Find next age with vaccinations
+    for (let i = currentAgeIndex + 1; i < AGES.length; i++) {
+      const nextAge = AGES[i]
+      const vaccines: string[] = []
+
+      VACCINATIONS.forEach((vac) => {
+        if (vac.schedule[nextAge]) {
+          vaccines.push(vac.name)
+        }
+      })
+
+      if (vaccines.length > 0) {
+        return { age: formatAgeText(nextAge), vaccines }
+      }
+    }
+
+    return null
+  }
+
+  return {
+    currentAgeIndex,
+    previousVaccination: getPreviousVaccinations(),
+    nextVaccination: getNextVaccinations(),
+  }
+}
+
+export default function VacCalendar({ childAgeInMonths }: VacCalendarProps) {
+  const { currentAgeIndex } = getVaccinationInfo(childAgeInMonths)
+
+  const getAgeIndex = (age: string): number => {
+    return AGES.indexOf(age)
+  }
 
   const isAgeActive = (age: string): boolean => {
     if (currentAgeIndex === -1) return false
@@ -298,17 +372,17 @@ export default function VacCalendar({ childAgeInMonths }: VacCalendarProps) {
   }
 
   return (
-    <div className="overflow-x-auto rounded-xl border border-gray-300 bg-white shadow">
+    <div className="overflow-x-auto rounded-xl border border-neutral bg-base-200 shadow">
       <table className="w-full text-sm">
         <thead>
-          <tr className="bg-gray-100">
+          <tr className="bg-base-100">
             <th className="border p-2 text-left font-semibold">Инфекция</th>
             {AGES.map((age) => (
               <th
                 key={age}
                 className={clsx(
                   'border p-2 text-center font-semibold text-xs',
-                  isAgeActive(age) && 'bg-blue-50'
+                  isAgeActive(age) && 'bg-blue-500 text-base-200'
                 )}
               >
                 {age}
