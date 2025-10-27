@@ -1,5 +1,3 @@
-const oneWeekMs = 1000 * 60 * 60 * 24 * 7
-
 function getAgeSuffix(age: number): string {
   const lastDigit = age % 10
   const lastTwoDigits = age % 100
@@ -28,12 +26,26 @@ export default function (dateString: string) {
   const birthDate = new Date(dateString)
 
   let years = today.getFullYear() - birthDate.getFullYear()
-  const months = today.getMonth() - birthDate.getMonth()
-  if (months < 0 || (months === 0 && today.getDate() < birthDate.getDate())) {
-    years--
+  let months = today.getMonth() - birthDate.getMonth()
+  let days = today.getDate() - birthDate.getDate()
+
+  // Adjust if day hasn't occurred yet this month
+  if (days < 0) {
+    months--
+    const lastMonth = new Date(today.getFullYear(), today.getMonth(), 0)
+    days += lastMonth.getDate()
   }
-  const weeks = Math.floor((today.getTime() - birthDate.getTime()) / oneWeekMs)
-  const days = today.getDate() - birthDate.getDate()
+
+  // Adjust if month hasn't occurred yet this year
+  if (months < 0) {
+    years--
+    months += 12
+  }
+
+  const totalDays = Math.floor(
+    (today.getTime() - birthDate.getTime()) / (1000 * 60 * 60 * 24)
+  )
+  const weeks = Math.floor(totalDays / 7)
 
   const stringified = []
 
@@ -42,16 +54,15 @@ export default function (dateString: string) {
     if (months > 0) {
       stringified.push(`${months} мес`)
     }
+  } else if (months > 0) {
+    // Only show months (no weeks when months > 0)
+    stringified.push(`${months} мес`)
   } else {
-    if (months > 0) {
-      stringified.push(`${months} мес`)
-      if (weeks > 0) {
-        stringified.push(`${weeks} нед`)
-      }
-    } else {
-      if (weeks > 0) {
-        stringified.push(`${weeks} нед`)
-      }
+    // Less than 1 month old: show weeks and/or days
+    if (weeks > 0) {
+      stringified.push(`${weeks} нед`)
+    }
+    if (days > 0 || weeks === 0) {
       stringified.push(`${days} ${getDaySuffix(days)}`)
     }
   }

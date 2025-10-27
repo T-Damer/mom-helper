@@ -1,7 +1,7 @@
 import Cradle from 'components/Icons/Cradle'
 import getAge from 'helpers/getAge'
 
-export default function ({
+export default function ChildDetailsHeader({
   name,
   birthDate,
 }: { name: string; birthDate: string }) {

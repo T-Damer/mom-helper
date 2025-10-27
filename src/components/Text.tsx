@@ -1,3 +1,4 @@
+import clsx from 'clsx'
 import { PropsWithChildren } from 'preact/compat'
 
 export function Header2({
@@ -16,7 +17,7 @@ export default function Text({
   ...other
 }: PropsWithChildren & React.HTMLAttributes<HTMLSpanElement>) {
   return (
-    <span {...other} className="text-primaryDark">
+    <span {...other} className={clsx('text-primaryDark', other.className)}>
       {children}
     </span>
   )

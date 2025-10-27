@@ -105,11 +105,13 @@ export default function BreastFeeding({ childId }: { childId: string }) {
           legend="Вес ребенка на данный момент (грамм)"
           inputType="number"
         />
+
+        <Text className="font-bold">
+          Количество приемов для данного возраста: {ceil(numberOfFeedings)} раз
+        </Text>
+        <Text className="font-bold">Объем на прием: {ceil(volume)} мл</Text>
         <Text>Калорийность в сутки: {ceil(kcalPerDay)} ккал</Text>
         <Text>Калорийность на прием: {ceil(kcalPerFeed)} ккал</Text>
-        <Text>Количество приемов: {ceil(numberOfFeedings)} раз</Text>
-        <Text>Объем на прием: {ceil(volume)} мл</Text>
-        {/* <img src={diet} /> */}
       </div>
     </>
   )

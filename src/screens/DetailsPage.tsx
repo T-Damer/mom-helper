@@ -1,7 +1,7 @@
 import childrenDataStore from 'atoms/childrenDataStore'
 import ChildDetailsHeader from 'components/ChildDetailsHeader'
 import DetailsCard from 'components/DetailsCard'
-import Header, { GoBackButton } from 'components/Header'
+import Header from 'components/Header'
 import Elevation from 'components/Icons/Elevation'
 import HumanMagnified from 'components/Icons/HumanMagnified'
 import Nutrition from 'components/Icons/Nutrition'
@@ -33,6 +33,7 @@ export default function ({ childId }: { childId: string }) {
   }
 
   const { name, birthDate } = patientsData[currentChildrenIndex]
+  const { years } = getAge(birthDate)
 
   return (
     <div className="flex h-full flex-col gap-x-2">
@@ -45,18 +46,22 @@ export default function ({ childId }: { childId: string }) {
           <Syringe color="#4B64EC" />
           <Text>Календарь вакцинации</Text>
         </DetailsCard>
-        <DetailsCard path="/weaning" id={childId}>
-          <Elevation color="#1DC06E" />
-          <Text>Календарь прикормов</Text>
-        </DetailsCard>
         <DetailsCard path="/specialists" id={childId}>
           <HumanMagnified color="#DFC641" />
           <Text>Календарь посещения специалистов</Text>
         </DetailsCard>
-        <DetailsCard path="/diet" id={childId}>
-          <Nutrition />
-          <Text>Расчет питания</Text>
-        </DetailsCard>
+        {years > 1 ? null : (
+          <DetailsCard path="/weaning" id={childId}>
+            <Elevation color="#1DC06E" />
+            <Text>Календарь прикормов</Text>
+          </DetailsCard>
+        )}
+        {years > 2 ? null : (
+          <DetailsCard path="/diet" id={childId}>
+            <Nutrition />
+            <Text>Расчет питания</Text>
+          </DetailsCard>
+        )}
       </div>
     </div>
   )

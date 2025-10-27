@@ -1,7 +1,7 @@
 import childrenDataStore from 'atoms/childrenDataStore'
 import Header, { GoBackButton } from 'components/Header'
-import VacTable from 'components/VacCalendar/VacTable'
-import calculateCompletedVacs from 'helpers/vacCalendar/calculateCompletedVacs'
+import VacCalendar from 'components/VacCalendar/VacCalendar'
+import getAge from 'helpers/getAge'
 import { useAtom } from 'jotai'
 
 export default function ({ childId }: { childId: string }) {
@@ -9,15 +9,17 @@ export default function ({ childId }: { childId: string }) {
 
   const currentChildren = patientsData.find(({ id }) => id === childId)
 
+  if (!currentChildren?.birthDate) {
+    return <div>Данные ребенка не найдены</div>
+  }
+
   const birthDate = currentChildren?.birthDate
-    ? Number(new Date(currentChildren?.birthDate))
-    : 0
-  const { completedPercent } = calculateCompletedVacs(birthDate)
+  const { years, months } = getAge(birthDate)
 
   return (
     <>
       <Header>Календарь вакцинации</Header>
-      <VacTable completedPercent={completedPercent} />
+      <VacCalendar childAgeInMonths={years * 12 + months} />
     </>
   )
 }

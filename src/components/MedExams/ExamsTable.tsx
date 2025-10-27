@@ -333,13 +333,40 @@ export default function ExamsTable({
   birthDate,
 }: { birthDate: string | Date }) {
   const months = calculateAgeInMonths(birthDate)
-  const currentAgeString = getAgeString(months)
+
+  // Find the closest lower age interval from the ages array
+  const getCurrentAgeInterval = (currentMonths: number): string => {
+    // Special case: if less than 1 month, use "1 мес" (not "<1 мес")
+    if (currentMonths === 0) return '1 мес'
+
+    // Convert all ages to months and find the closest lower one
+    const ageInMonthsArray = ages.map((age) => ({
+      age,
+      months: ageStringToMonths(age),
+    }))
+
+    // Filter ages that are <= current age and find the maximum
+    const validAges = ageInMonthsArray.filter(
+      (item) => item.months <= currentMonths
+    )
+
+    if (validAges.length === 0) return ages[0]
+
+    // Return the age with the highest month value that's still <= current
+    const closestAge = validAges.reduce((prev, current) =>
+      current.months > prev.months ? current : prev
+    )
+
+    return closestAge.age
+  }
+
+  const highlightedAge = getCurrentAgeInterval(months)
 
   return (
     <div className="flex flex-col gap-2">
       <CurrentExamBlock
         medicalData={MEDICAL_DATA}
-        currentAgeString={currentAgeString}
+        currentAgeString={highlightedAge}
       />
       <div className="overflow-x-auto rounded-box border border-base-content/5 bg-base-100">
         <table className="table">
@@ -352,7 +379,7 @@ export default function ExamsTable({
               {ages.map((age) => (
                 <th
                   key={age}
-                  className={`border p-2 text-center text-xs ${age === currentAgeString ? 'bg-accent font-bold' : ''}`}
+                  className={`border p-2 text-center text-xs ${age === highlightedAge ? 'bg-accent font-bold' : ''}`}
                 >
                   {age}
                 </th>
@@ -366,7 +393,7 @@ export default function ExamsTable({
                 {ages.map((age) => {
                   const ageInMonths = ageStringToMonths(age)
                   const isCompleted = ageInMonths < months
-                  const isCurrent = age === currentAgeString
+                  const isCurrent = age === highlightedAge
 
                   return (
                     <td key={`${row.specialty}-${age}`} className="border p-2">

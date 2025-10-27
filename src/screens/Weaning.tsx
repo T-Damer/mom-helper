@@ -4,7 +4,7 @@ import Header from 'components/Header'
 import WeaningTable from 'components/WeaningTable'
 import { useAtomValue } from 'jotai'
 
-export default function ({ childId }: { childId: string }) {
+export default function Weaning({ childId }: { childId: string }) {
   const child = useAtomValue(childrenDataStore).find(
     (child) => child.id === childId
   )
@@ -23,7 +23,6 @@ export default function ({ childId }: { childId: string }) {
         <span>**** - добавляется к овощному пюре</span>
         <span>***** - добавляется к каше</span>
       </div>
-      {/* <img src={weaning} /> */}
     </>
   )
 }

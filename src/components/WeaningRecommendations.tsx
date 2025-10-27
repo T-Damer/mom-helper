@@ -15,7 +15,7 @@ export default function WeaningRecommendations({
             {recommendations.map((item, index) => (
               <li key={index} className="flex justify-between">
                 <span className="font-medium">{item.name}:</span>
-                <span className="ml-2">{item.value}</span>
+                <span className="ml-2">{item.value}г</span>
               </li>
             ))}
           </ul>

@@ -1,6 +1,5 @@
 import Button from 'components/Button'
 import Header from 'components/Header'
-import TextHeader from 'components/TextHeader'
 import navigate from 'helpers/navigate'
 
 export default function Diet({ childId }: { childId: string }) {

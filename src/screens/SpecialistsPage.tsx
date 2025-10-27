@@ -1,8 +1,6 @@
-import medExams from 'assets/medExams.jpg'
 import childrenDataStore from 'atoms/childrenDataStore'
-import Header, { GoBackButton } from 'components/Header'
+import Header from 'components/Header'
 import ExamsTable from 'components/MedExams/ExamsTable'
-import Text from 'components/Text'
 import { useAtomValue } from 'jotai'
 
 export default function ({ childId }: { childId: string }) {
@@ -46,8 +44,6 @@ export default function ({ childId }: { childId: string }) {
             </a>
           </li>
         </ul>
-
-        {/* <img src={medExams} /> */}
       </div>
     </>
   )
